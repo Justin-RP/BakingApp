@@ -7,9 +7,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -18,6 +22,7 @@ import android.widget.TextView;
 import com.android.volley.toolbox.NetworkImageView;
 import com.example.gaiajustin.bakingapp.CakeGrid.ProductCardRecyclerViewAdapter;
 import com.example.gaiajustin.bakingapp.CakeGrid.ProductGridItemDecoration;
+import com.example.gaiajustin.bakingapp.DetailActivity;
 import com.example.gaiajustin.bakingapp.R;
 import com.example.gaiajustin.bakingapp.database.Cake;
 import com.example.gaiajustin.bakingapp.database.CakeViewModel;
@@ -71,10 +76,13 @@ public class DetailFragment extends Fragment {
             public void onChanged(@Nullable List<Cake> cakes) {
                 cakeList.clear();
                 cakeList.addAll(cakes);
-                tvCakeName.setText(cakeList.get(cakeId).getName());
+                ((DetailActivity) getActivity()).setActionBarTitle(cakeList.get(cakeId).getName());
                 Log.d(TAG, "onChanged: " + cakeList.get(0).getName());
+
             }
         });
     }
+
+
 
 }

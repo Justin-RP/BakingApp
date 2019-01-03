@@ -53,7 +53,6 @@ public class ProductGridFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
         context = MyApplication.getAppContext();
     }
 
@@ -64,8 +63,6 @@ public class ProductGridFragment extends Fragment {
         // Inflate the layout for this fragment with the ProductGrid theme
         View view = inflater.inflate(R.layout.ba_product_grid_fragment, container, false);
 
-        // Set up the toolbar
-        setUpToolbar(view);
 
         // Instantiate cakeList
         cakeList = new ArrayList<>();
@@ -117,19 +114,6 @@ public class ProductGridFragment extends Fragment {
         );
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
-        menuInflater.inflate(R.menu.app_toolbar_menu, menu);
-        super.onCreateOptionsMenu(menu, menuInflater);
-    }
-
-    private void setUpToolbar(View view) {
-        Toolbar toolbar = view.findViewById(R.id.app_bar);
-        AppCompatActivity activity = (AppCompatActivity) getActivity();
-        if (activity != null) {
-            activity.setSupportActionBar(toolbar);
-        }
-    }
 
     @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
