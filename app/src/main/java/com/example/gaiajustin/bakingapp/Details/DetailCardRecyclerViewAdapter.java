@@ -13,11 +13,11 @@ import com.example.gaiajustin.bakingapp.database.Cake;
 
 import java.util.List;
 
-public class DetailsCardRecyclerViewAdapter extends RecyclerView.Adapter<ProductCardViewHolder>{
+public class DetailCardRecyclerViewAdapter extends RecyclerView.Adapter<ProductCardViewHolder>{
     private List<Cake> productList;
     private ImageRequester imageRequester;
 
-    DetailsCardRecyclerViewAdapter(List<Cake> productList) {
+    DetailCardRecyclerViewAdapter(List<Cake> productList) {
         this.productList = productList;
         imageRequester = ImageRequester.getInstance();
     }

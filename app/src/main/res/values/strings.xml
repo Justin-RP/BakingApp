@@ -12,4 +12,6 @@
     <string name="shr_bottoms_label">Bottoms</string>
     <string name="shr_dresses_label">Dresses</string>
     <string name="shr_account_label">My Account</string>
+
+    <string name="cake_positon_pressed" translatable="false">Postion</string>
 </resources>

@@ -1,18 +1,24 @@
 package com.example.gaiajustin.bakingapp.database;
 
+import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity(tableName = "cake_table")
 public class Cake {
 
-    private int id, servings;
+    @PrimaryKey
+    private int id;
+    private int servings;
     private String name, imageURL;
-    private List<Ingredient> ingredients;
-    private List<Step> steps;
+    private ArrayList<Ingredient> ingredients;
+    private ArrayList<Step> steps;
 
-    public Cake(int id, String name, int servings, String imageURL, List<Ingredient> ingredients, List<Step> steps) {
+
+    public Cake(int id, String name, int servings, String imageURL, ArrayList<Ingredient> ingredients, ArrayList<Step> steps) {
         this.id = id;
         this.name = name;
         this.ingredients = ingredients;
@@ -37,11 +43,11 @@ public class Cake {
         this.name = name;
     }
 
-    public List<Ingredient> getIngredients() {
+    public ArrayList<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
+    public void setIngredients(ArrayList<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 
@@ -61,41 +67,35 @@ public class Cake {
         this.imageURL = imageUrl;
     }
 
-    public List<Step> getSteps() {
+    public ArrayList<Step> getSteps() {
         return steps;
     }
 
-    public void setSteps(List<Step> steps) {
+    public void setSteps(ArrayList<Step> steps) {
         this.steps = steps;
     }
 
     // TODO Should take in a param of cakes, maybe JSON...
-    public static List<Cake> initProductEntryList() {
+    public static ArrayList<Cake> initProductEntryList() {
         // Dummy Data
-        int id = 1;
-        String name = "Hello";
-        Ingredient ingredients = new Ingredient(19,"Justin", "LOL");
-        List<Ingredient> ingredientList = new ArrayList<>();
-        ingredientList.add(ingredients);
-        Step step = new Step(1,"Press","Press Longer","http:/", "http:/");
-        List<Step> stepList = new ArrayList<>();
-        stepList.add(step);
-
-        List<Cake> cakeList = new ArrayList<>();
-
-        Cake cake = new Cake(id, name, 4, "http://image.tmdb.org/t/p/w185/i2dF9UxOeb77CAJrOflj0RpqJRF.jpg", ingredientList, stepList);
-        cakeList.add(cake);
-
-        Cake secondCake = new Cake(id,name, 2, "http://",ingredientList, stepList);
-        cakeList.add(secondCake);
-
-        Cake thirdCake = new Cake(id,"bye", 3, "https://",ingredientList, stepList);
-        cakeList.add(thirdCake);
-        cakeList.add(cake);
-        cakeList.add(cake);
-        cakeList.add(cake);
-        cakeList.add(cake);
-
+//        String name = "Hello";
+//        Ingredient ingredients = new Ingredient(19,"Justin", "LOL");
+//        ArrayList<Ingredient> ingredientList = new ArrayList<>();
+//        ingredientList.add(ingredients);
+//        Step step = new Step(1,"Press","Press Longer","http:/", "http:/");
+//        ArrayList<Step> stepList = new ArrayList<>();
+//        stepList.add(step);
+//
+        ArrayList<Cake> cakeList = new ArrayList<>();
+//
+//        Cake cake = new Cake(5, name, 4, "http://image.tmdb.org/t/p/w185/i2dF9UxOeb77CAJrOflj0RpqJRF.jpg", ingredientList, stepList);
+//        cakeList.add(cake);
+//
+//        Cake secondCake = new Cake(6,name, 2, "http://",ingredientList, stepList);
+//        cakeList.add(secondCake);
+//
+//        Cake thirdCake = new Cake(7,"bye", 3, "https://",ingredientList, stepList);
+//        cakeList.add(thirdCake);
         return cakeList;
     }
 

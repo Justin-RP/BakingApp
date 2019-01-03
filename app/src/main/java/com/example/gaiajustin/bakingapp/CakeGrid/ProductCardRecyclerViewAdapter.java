@@ -2,6 +2,7 @@ package com.example.gaiajustin.bakingapp.CakeGrid;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +15,10 @@ import java.util.List;
 
 public class ProductCardRecyclerViewAdapter extends RecyclerView.Adapter<ProductCardViewHolder> {
 
+    private static final String TAG = ProductCardRecyclerViewAdapter.class.getSimpleName();
     private List<Cake> productList;
     private ImageRequester imageRequester;
+
 
     ProductCardRecyclerViewAdapter(List<Cake> productList) {
         this.productList = productList;
@@ -40,7 +43,12 @@ public class ProductCardRecyclerViewAdapter extends RecyclerView.Adapter<Product
 
     @Override
     public int getItemCount() {
-        return productList.size();
+        if (productList != null) {
+            return productList.size();
+        } else {
+            return 0;
+        }
+
     }
 
 }
