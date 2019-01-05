@@ -1,6 +1,5 @@
-package com.example.gaiajustin.bakingapp.CakeGrid;
+package com.example.gaiajustin.bakingapp.Details;
 
-import android.app.ActivityOptions;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -10,44 +9,30 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.util.Pair;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import com.android.volley.toolbox.NetworkImageView;
 import com.example.gaiajustin.bakingapp.DetailActivity;
-import com.example.gaiajustin.bakingapp.ImageRequester;
 import com.example.gaiajustin.bakingapp.MyApplication;
 import com.example.gaiajustin.bakingapp.R;
 import com.example.gaiajustin.bakingapp.database.Cake;
 import com.example.gaiajustin.bakingapp.database.CakeViewModel;
-import com.example.gaiajustin.bakingapp.database.Ingredient;
 import com.example.gaiajustin.bakingapp.database.Step;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-
-public class ProductGridFragment extends Fragment {
+public class DetailGridFragment extends Fragment {
 
     private static final String BUNDLE_RECYCLER_LAYOUT = "classname.recycler.layout";
-    private static final String TAG = ProductGridFragment.class.getSimpleName();
+    private static final String TAG = DetailGridFragment.class.getSimpleName();
     private RecyclerView recyclerView;
     private CakeViewModel cakeViewModel;
-    private List<Cake> cakeList;
+    private List<Step> stepList;
     private Context context;
 
     @Override
@@ -60,34 +45,36 @@ public class ProductGridFragment extends Fragment {
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        // Inflate the layout for this fragment with the ProductGrid theme
-        View view = inflater.inflate(R.layout.ba_product_grid_fragment, container, false);
-
+        // Inflate the layout for this fragment with the StepGrid theme
+        View view = inflater.inflate(R.layout.ba_detail_grid_fragment, container, false);
 
         // Instantiate cakeList
-        cakeList = new ArrayList<>();
+        stepList = new ArrayList<>();
 
         // Set up the RecyclerView
-        recyclerView = view.findViewById(R.id.recycler_view);
+        recyclerView = view.findViewById(R.id.detail_recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1, GridLayoutManager.VERTICAL, false));
-        final ProductCardRecyclerViewAdapter adapter = new ProductCardRecyclerViewAdapter(
-                cakeList);
+        final DetailCardRecyclerViewAdapter adapter = new DetailCardRecyclerViewAdapter(
+                stepList);
         recyclerView.setAdapter(adapter);
         int largePadding = getResources().getDimensionPixelSize(R.dimen.shr_product_grid_spacing);
         int smallPadding = getResources().getDimensionPixelSize(R.dimen.shr_product_grid_spacing_small);
-        recyclerView.addItemDecoration(new ProductGridItemDecoration(largePadding, smallPadding));
+        recyclerView.addItemDecoration(new DetailGridItemDecoration(largePadding, smallPadding));
 
 
         // Set up viewModel
+        // TODO UPDATE LIST
         cakeViewModel = ViewModelProviders.of(this).get(CakeViewModel.class);
         cakeViewModel.getCakes().observe(this, new Observer<List<Cake>>() {
             @Override
             public void onChanged(@Nullable List<Cake> cakes) {
+                Intent intent = getActivity().getIntent();
+                final int cakeId = intent.getIntExtra(getResources().getString(R.string.cake_positon_pressed), 0);
                 // TODO Check if CakeList Observed is only supposed to activate once
-                Log.d(TAG, "onChanged: CakeList Observed");
-                cakeList.clear();
-                cakeList.addAll(cakes);
+//                Log.d(TAG, "onChanged: CakeList Observed");
+                stepList.clear();
+                stepList.addAll(cakes.get(cakeId).getSteps());
                 adapter.notifyDataSetChanged();
             }
         });
@@ -99,13 +86,14 @@ public class ProductGridFragment extends Fragment {
     public void onResume() {
         super.onResume();
         recyclerView.addOnItemTouchListener(
-                new RecyclerItemClickListener(context, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                new DetailItemClickListener(context, recyclerView ,new DetailItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
-                        Log.d(TAG, "onItemClick: " + position);
-                        Intent toDetailIntent = new Intent(context, DetailActivity.class);
-
-                        toDetailIntent.putExtra(getResources().getString(R.string.cake_positon_pressed), position);
-                        context.startActivity(toDetailIntent);
+                        // TODO When Recycler View is clicked Expand
+//                        Log.d(TAG, "onItemClick: " + position);
+//                        Intent toDetailIntent = new Intent(context, DetailActivity.class);
+//
+//                        toDetailIntent.putExtra(getResources().getString(R.string.cake_positon_pressed), position);
+//                        context.startActivity(toDetailIntent);
                     }
 
                     @Override public void onLongItemClick(View view, int position) {

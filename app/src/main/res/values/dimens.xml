@@ -5,6 +5,7 @@
     <dimen name="ba_cake_card_image_height">120dp</dimen>
 
     <dimen name="ba_cake_card_reveal_height">200dp</dimen>
+    <dimen name="ba_detail_card_title_padding">16dp</dimen>
 
     <!-- Dimens for staggered asymmetric grid layout cards-->
     <dimen name="shr_staggered_product_grid_spacing_large">30dp</dimen>

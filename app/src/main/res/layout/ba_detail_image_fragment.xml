@@ -11,20 +11,12 @@
         android:layout_height="@dimen/ba_cake_card_reveal_height"
         android:background="?attr/colorPrimaryDark"
         android:scaleType="centerCrop"/>
-    <LinearLayout
-        android:id="@+id/detail_linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/detail_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="30dp"
-            tools:text="Cake"
-            android:padding="16dp"
-            android:textAppearance="?attr/textAppearanceHeadline6" />
-    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/detail_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
 
 </LinearLayout>

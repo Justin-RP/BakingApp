@@ -7,22 +7,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.android.volley.toolbox.NetworkImageView;
-import com.example.gaiajustin.bakingapp.CakeGrid.ProductCardRecyclerViewAdapter;
-import com.example.gaiajustin.bakingapp.CakeGrid.ProductGridItemDecoration;
 import com.example.gaiajustin.bakingapp.DetailActivity;
+import com.example.gaiajustin.bakingapp.ImageRequester;
 import com.example.gaiajustin.bakingapp.R;
 import com.example.gaiajustin.bakingapp.database.Cake;
 import com.example.gaiajustin.bakingapp.database.CakeViewModel;
@@ -30,28 +22,27 @@ import com.example.gaiajustin.bakingapp.database.CakeViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetailFragment extends Fragment {
+public class DetailFragmentImage extends Fragment {
 
-    private static final String TAG = DetailFragment.class.getSimpleName();
+    private static final String TAG = DetailFragmentImage.class.getSimpleName();
     private CakeViewModel cakeViewModel;
     private List<Cake> cakeList;
+    private ImageRequester imageRequester;
 
     // Views
     private NetworkImageView imageView;
-    private LinearLayout linearLayout;
-    private TextView tvCakeName;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment with the ProductGrid theme
-        View view = inflater.inflate(R.layout.ba_detail_fragment, container, false);
+        View view = inflater.inflate(R.layout.ba_detail_image_fragment, container, false);
+
+        imageRequester = ImageRequester.getInstance();
 
         // Set up Views
         imageView = view.findViewById(R.id.detail_image);
-        linearLayout = view.findViewById(R.id.detail_linearLayout);
-        tvCakeName = view.findViewById(R.id.detail_title);
 
         cakeViewModel = ViewModelProviders.of(this).get(CakeViewModel.class);
         cakeList = new ArrayList<>();
@@ -62,7 +53,6 @@ public class DetailFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
     }
 
     @Override
@@ -77,8 +67,7 @@ public class DetailFragment extends Fragment {
                 cakeList.clear();
                 cakeList.addAll(cakes);
                 ((DetailActivity) getActivity()).setActionBarTitle(cakeList.get(cakeId).getName());
-                Log.d(TAG, "onChanged: " + cakeList.get(0).getName());
-
+                imageRequester.setImageFromUrl(imageView, cakeList.get(cakeId).getImageURL());
             }
         });
     }

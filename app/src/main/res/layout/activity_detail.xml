@@ -4,12 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".DetailActivity">
 
     <FrameLayout
-        android:id="@+id/mFragMain"
+        android:id="@+id/mFragDetail_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <FrameLayout
+        android:id="@+id/mFragDetail_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         />
 
 </LinearLayout>

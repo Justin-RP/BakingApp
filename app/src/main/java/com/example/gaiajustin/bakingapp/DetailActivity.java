@@ -5,8 +5,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.gaiajustin.bakingapp.CakeGrid.ProductGridFragment;
-import com.example.gaiajustin.bakingapp.Details.DetailFragment;
+import com.example.gaiajustin.bakingapp.Details.DetailFragmentImage;
+import com.example.gaiajustin.bakingapp.Details.DetailGridFragment;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -18,10 +18,12 @@ public class DetailActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        DetailFragment detailFragment = new DetailFragment();
+        DetailFragmentImage detailFragmentImage = new DetailFragmentImage();
+        DetailGridFragment detailGridFragment = new DetailGridFragment();
         FragmentTransaction fragmentTransactionFav = getSupportFragmentManager().beginTransaction();
         fragmentTransactionFav.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
-        fragmentTransactionFav.replace(R.id.mFragMain, detailFragment);
+        fragmentTransactionFav.replace(R.id.mFragDetail_image, detailFragmentImage);
+        fragmentTransactionFav.replace(R.id.mFragDetail_details, detailGridFragment);
         fragmentTransactionFav.commit();
     }
 

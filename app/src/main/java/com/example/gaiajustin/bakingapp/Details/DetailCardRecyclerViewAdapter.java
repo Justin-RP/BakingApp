@@ -10,37 +10,38 @@ import com.example.gaiajustin.bakingapp.CakeGrid.ProductCardViewHolder;
 import com.example.gaiajustin.bakingapp.ImageRequester;
 import com.example.gaiajustin.bakingapp.R;
 import com.example.gaiajustin.bakingapp.database.Cake;
+import com.example.gaiajustin.bakingapp.database.Step;
 
 import java.util.List;
 
-public class DetailCardRecyclerViewAdapter extends RecyclerView.Adapter<ProductCardViewHolder>{
-    private List<Cake> productList;
-    private ImageRequester imageRequester;
+public class DetailCardRecyclerViewAdapter extends RecyclerView.Adapter<DetailCardViewHolder>{
+    private List<Step> stepList;
 
-    DetailCardRecyclerViewAdapter(List<Cake> productList) {
-        this.productList = productList;
-        imageRequester = ImageRequester.getInstance();
+    DetailCardRecyclerViewAdapter(List<Step> stepList) {
+        this.stepList = stepList;
     }
 
     @NonNull
     @Override
-    public ProductCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.ba_product_card, parent, false);
-        return new ProductCardViewHolder(layoutView);
+    public DetailCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.ba_detail_card, parent, false);
+        return new DetailCardViewHolder(layoutView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductCardViewHolder holder, int position) {
-        if (productList != null && position < productList.size()) {
-            Cake cake = productList.get(position);
-            holder.productTitle.setText(cake.getName());
-            imageRequester.setImageFromUrl(holder.productImage, cake.getImageURL());
+    public void onBindViewHolder(@NonNull DetailCardViewHolder holder, int position) {
+        if (stepList != null && position < stepList.size()) {
+            // TODO DISPLAY TEXT HERE
+            Step step = stepList.get(position);
+            holder.detailTitle.setText(step.getShortDesc());
+            int displayPosition = position + 1;
+            holder.detailStepNumber.setText("Step " + displayPosition);
         }
     }
 
     @Override
     public int getItemCount() {
-        return productList.size();
+        return stepList.size();
     }
 
 }

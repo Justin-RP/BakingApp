@@ -20,6 +20,7 @@ public class ProductCardViewHolder extends RecyclerView.ViewHolder {
         productImage = itemView.findViewById(R.id.product_image);
         productTitle = itemView.findViewById(R.id.product_title);
 
+        // TODO SHOULD I DELETE THIS CODE, Not part of viewholder
         productImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
