@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/ingredient_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/ba_title_size"
+            tools:text="Pepper"
+            android:paddingTop="@dimen/ba_detail_card_title_padding"
+            android:paddingLeft="@dimen/ba_detail_card_title_padding"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            />
+
+        <LinearLayout
+            android:paddingLeft="@dimen/ba_detail_card_title_padding"
+            android:paddingBottom="@dimen/ba_detail_card_title_padding"
+            android:orientation="horizontal"
+            android:weightSum="20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_weight="1"
+                android:id="@+id/ingredient_qty"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                tools:text="2"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textColor="@color/colorLightText" />
+
+            <TextView
+                android:layout_weight="19"
+                android:id="@+id/ingredient_measure"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                tools:text="CUP"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textColor="@color/colorLightText" />
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+</android.support.design.card.MaterialCardView>
