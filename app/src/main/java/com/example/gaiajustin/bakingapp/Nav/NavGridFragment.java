@@ -1,4 +1,4 @@
-package com.example.gaiajustin.bakingapp.Details;
+package com.example.gaiajustin.bakingapp.Nav;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -26,14 +26,15 @@ import com.example.gaiajustin.bakingapp.database.Step;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetailGridFragment extends Fragment {
+public class NavGridFragment extends Fragment {
 
     private static final String BUNDLE_RECYCLER_LAYOUT = "classname.recycler.layout";
-    private static final String TAG = DetailGridFragment.class.getSimpleName();
+    private static final String TAG = NavGridFragment.class.getSimpleName();
     private RecyclerView recyclerView;
     private CakeViewModel cakeViewModel;
     private List<Step> stepList;
     private Context context;
+    private int cakeId;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,21 +47,21 @@ public class DetailGridFragment extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment with the StepGrid theme
-        View view = inflater.inflate(R.layout.ba_detail_grid_fragment, container, false);
+        View view = inflater.inflate(R.layout.ba_nav_grid_fragment, container, false);
 
         // Instantiate cakeList
         stepList = new ArrayList<>();
 
         // Set up the RecyclerView
-        recyclerView = view.findViewById(R.id.detail_recycler_view);
+        recyclerView = view.findViewById(R.id.nav_recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1, GridLayoutManager.VERTICAL, false));
-        final DetailCardRecyclerViewAdapter adapter = new DetailCardRecyclerViewAdapter(
+        final NavCardRecyclerViewAdapter adapter = new NavCardRecyclerViewAdapter(
                 stepList);
         recyclerView.setAdapter(adapter);
-        int largePadding = getResources().getDimensionPixelSize(R.dimen.shr_product_grid_spacing);
+        int largePadding = getResources().getDimensionPixelSize(R.dimen.ba_grid_spacing);
         int smallPadding = getResources().getDimensionPixelSize(R.dimen.shr_product_grid_spacing_small);
-        recyclerView.addItemDecoration(new DetailGridItemDecoration(largePadding, smallPadding));
+        recyclerView.addItemDecoration(new NavGridItemDecoration(largePadding, smallPadding));
 
 
         // Set up viewModel
@@ -70,7 +71,7 @@ public class DetailGridFragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<Cake> cakes) {
                 Intent intent = getActivity().getIntent();
-                final int cakeId = intent.getIntExtra(getResources().getString(R.string.cake_positon_pressed), 0);
+                cakeId = intent.getIntExtra(getResources().getString(R.string.cake_position_pressed), 0);
                 // TODO Check if CakeList Observed is only supposed to activate once
 //                Log.d(TAG, "onChanged: CakeList Observed");
                 stepList.clear();
@@ -86,14 +87,14 @@ public class DetailGridFragment extends Fragment {
     public void onResume() {
         super.onResume();
         recyclerView.addOnItemTouchListener(
-                new DetailItemClickListener(context, recyclerView ,new DetailItemClickListener.OnItemClickListener() {
+                new NavItemClickListener(context, recyclerView ,new NavItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
                         // TODO When Recycler View is clicked Expand
-//                        Log.d(TAG, "onItemClick: " + position);
-//                        Intent toDetailIntent = new Intent(context, DetailActivity.class);
-//
-//                        toDetailIntent.putExtra(getResources().getString(R.string.cake_positon_pressed), position);
-//                        context.startActivity(toDetailIntent);
+                        Log.d(TAG, "onItemClick: " + position);
+                        Intent toDetailIntent = new Intent(context, DetailActivity.class);
+                        toDetailIntent.putExtra(getResources().getString(R.string.step_position_pressed), position);
+                        toDetailIntent.putExtra(getResources().getString(R.string.cake_position_pressed), cakeId);
+                        context.startActivity(toDetailIntent);
                     }
 
                     @Override public void onLongItemClick(View view, int position) {

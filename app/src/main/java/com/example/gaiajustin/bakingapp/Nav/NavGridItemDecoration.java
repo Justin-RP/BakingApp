@@ -1,18 +1,18 @@
-package com.example.gaiajustin.bakingapp.Details;
+package com.example.gaiajustin.bakingapp.Nav;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * Custom item decoration for a vertical {@link DetailGridFragment} {@link RecyclerView}. Adds a
+ * Custom item decoration for a vertical {@link NavGridFragment} {@link RecyclerView}. Adds a
  * small amount of padding to the left of grid items, and a large amount of padding to the right.
  */
-public class DetailGridItemDecoration extends RecyclerView.ItemDecoration {
+public class NavGridItemDecoration extends RecyclerView.ItemDecoration {
     private int largePadding;
     private int smallPadding;
 
-    public DetailGridItemDecoration(int largePadding, int smallPadding) {
+    public NavGridItemDecoration(int largePadding, int smallPadding) {
         this.largePadding = largePadding;
         this.smallPadding = smallPadding;
     }

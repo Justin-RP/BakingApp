@@ -2,20 +2,21 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CakeGrid.ProductGridFragment"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Nav.NavGridFragment"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!--TODO android:background="@color/productGridBackgroundColor"-->
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/productGridBackgroundColor"
         android:paddingStart="@dimen/ba_grid_spacing"
         android:paddingEnd="@dimen/ba_grid_spacing"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        >
+
+
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
+            android:id="@+id/nav_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

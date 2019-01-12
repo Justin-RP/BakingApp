@@ -1,6 +1,5 @@
 package com.example.gaiajustin.bakingapp.CakeGrid;
 
-import android.app.ActivityOptions;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -10,36 +9,21 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.util.Pair;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import com.android.volley.toolbox.NetworkImageView;
-import com.example.gaiajustin.bakingapp.DetailActivity;
-import com.example.gaiajustin.bakingapp.ImageRequester;
+import com.example.gaiajustin.bakingapp.NavActivity;
 import com.example.gaiajustin.bakingapp.MyApplication;
 import com.example.gaiajustin.bakingapp.R;
 import com.example.gaiajustin.bakingapp.database.Cake;
 import com.example.gaiajustin.bakingapp.database.CakeViewModel;
-import com.example.gaiajustin.bakingapp.database.Ingredient;
-import com.example.gaiajustin.bakingapp.database.Step;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
 
 public class ProductGridFragment extends Fragment {
 
@@ -74,13 +58,15 @@ public class ProductGridFragment extends Fragment {
         final ProductCardRecyclerViewAdapter adapter = new ProductCardRecyclerViewAdapter(
                 cakeList);
         recyclerView.setAdapter(adapter);
-        int largePadding = getResources().getDimensionPixelSize(R.dimen.shr_product_grid_spacing);
+        int largePadding = getResources().getDimensionPixelSize(R.dimen.ba_grid_spacing);
         int smallPadding = getResources().getDimensionPixelSize(R.dimen.shr_product_grid_spacing_small);
         recyclerView.addItemDecoration(new ProductGridItemDecoration(largePadding, smallPadding));
 
 
         // Set up viewModel
+
         cakeViewModel = ViewModelProviders.of(this).get(CakeViewModel.class);
+        cakeViewModel.insertCakeList(Cake.initProductEntryList());
         cakeViewModel.getCakes().observe(this, new Observer<List<Cake>>() {
             @Override
             public void onChanged(@Nullable List<Cake> cakes) {
@@ -102,10 +88,10 @@ public class ProductGridFragment extends Fragment {
                 new RecyclerItemClickListener(context, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
                         Log.d(TAG, "onItemClick: " + position);
-                        Intent toDetailIntent = new Intent(context, DetailActivity.class);
+                        Intent toNavIntent = new Intent(context, NavActivity.class);
 
-                        toDetailIntent.putExtra(getResources().getString(R.string.cake_positon_pressed), position);
-                        context.startActivity(toDetailIntent);
+                        toNavIntent.putExtra(getResources().getString(R.string.cake_position_pressed), position);
+                        context.startActivity(toNavIntent);
                     }
 
                     @Override public void onLongItemClick(View view, int position) {

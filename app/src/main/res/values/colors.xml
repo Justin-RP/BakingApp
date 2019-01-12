@@ -6,5 +6,6 @@
     <color name="toolbarIconColor">#FFFFFF</color>
     <color name="loginPageBackgroundColor">#FFFFFF</color>
     <color name="productGridBackgroundColor">#FFFFFF</color>
+    <color name="white">#FFFFFF</color>
     <color name="colorLightText">#696969</color>
 </resources>

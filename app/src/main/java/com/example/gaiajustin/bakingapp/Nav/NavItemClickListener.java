@@ -1,4 +1,4 @@
-package com.example.gaiajustin.bakingapp.Details;
+package com.example.gaiajustin.bakingapp.Nav;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,7 +6,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class DetailItemClickListener implements RecyclerView.OnItemTouchListener {
+public class NavItemClickListener implements RecyclerView.OnItemTouchListener {
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener {
@@ -17,7 +17,7 @@ public class DetailItemClickListener implements RecyclerView.OnItemTouchListener
 
     GestureDetector mGestureDetector;
 
-    public DetailItemClickListener(Context context, final RecyclerView recyclerView, OnItemClickListener listener) {
+    public NavItemClickListener(Context context, final RecyclerView recyclerView, OnItemClickListener listener) {
         mListener = listener;
         mGestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
             @Override

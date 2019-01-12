@@ -13,5 +13,9 @@
     <string name="shr_dresses_label">Dresses</string>
     <string name="shr_account_label">My Account</string>
 
-    <string name="cake_positon_pressed" translatable="false">Postion</string>
+    <string name="cake_position_pressed" translatable="false">Cake_position</string>
+    <string name="step_position_pressed" translatable="false">Step_position</string>
+
+    <string name="appwidget_text">BakingApp</string>
+    <string name="add_widget">Add widget</string>
 </resources>

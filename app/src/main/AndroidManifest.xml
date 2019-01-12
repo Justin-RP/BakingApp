@@ -20,8 +20,21 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".NavActivity"
+            android:launchMode="singleInstance" />
+        <activity
             android:name=".DetailActivity"
-            android:launchMode="singleInstance"/>
+            android:launchMode="singleInstance" />
+
+        <receiver android:name=".IngredientWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/ingredient_widget_provider_info" />
+        </receiver>
     </application>
 
 </manifest>

@@ -1,12 +1,14 @@
 package com.example.gaiajustin.bakingapp;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.gaiajustin.bakingapp.Details.DetailFragmentImage;
-import com.example.gaiajustin.bakingapp.Details.DetailGridFragment;
+import com.example.gaiajustin.bakingapp.CakeGrid.ProductGridFragment;
+import com.example.gaiajustin.bakingapp.Ingredient.IngredientFragment;
+import com.example.gaiajustin.bakingapp.Step.StepFragment;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -18,13 +20,30 @@ public class DetailActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        DetailFragmentImage detailFragmentImage = new DetailFragmentImage();
-        DetailGridFragment detailGridFragment = new DetailGridFragment();
-        FragmentTransaction fragmentTransactionFav = getSupportFragmentManager().beginTransaction();
-        fragmentTransactionFav.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
-        fragmentTransactionFav.replace(R.id.mFragDetail_image, detailFragmentImage);
-        fragmentTransactionFav.replace(R.id.mFragDetail_details, detailGridFragment);
-        fragmentTransactionFav.commit();
+        Intent intent = getIntent();
+        if(intent.hasExtra(getResources().getString(R.string.step_position_pressed))) {
+            Bundle bundle = new Bundle();
+            bundle.putInt(getResources().getString(R.string.cake_position_pressed),
+                    intent.getIntExtra(getResources().getString(R.string.cake_position_pressed), 0));
+            StepFragment stepFragment = new StepFragment();
+            stepFragment.setArguments(bundle);
+            FragmentTransaction fragmentTransactionFav = getSupportFragmentManager().beginTransaction();
+            fragmentTransactionFav.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+            fragmentTransactionFav.replace(R.id.mFragMain, stepFragment);
+            fragmentTransactionFav.commit();
+        } else {
+            Bundle bundle = new Bundle();
+            bundle.putInt(getResources().getString(R.string.cake_position_pressed),
+                    intent.getIntExtra(getResources().getString(R.string.cake_position_pressed), 0));
+            bundle.putInt(getResources().getString(R.string.step_position_pressed),
+                    intent.getIntExtra(getResources().getString(R.string.step_position_pressed), 0));
+            IngredientFragment ingredientFragment = new IngredientFragment();
+            ingredientFragment.setArguments(bundle);
+            FragmentTransaction fragmentTransactionFav = getSupportFragmentManager().beginTransaction();
+            fragmentTransactionFav.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+            fragmentTransactionFav.replace(R.id.mFragMain, ingredientFragment);
+            fragmentTransactionFav.commit();
+        }
     }
 
     public void setActionBarTitle(String title) {
