@@ -3,13 +3,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".DetailActivity">
 
     <FrameLayout
-        android:id="@+id/mFragMain"
+        android:id="@+id/detailFragIngredient"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         />
+
+    <LinearLayout
+        android:id="@+id/detailStepLayout"
+        android:orientation="vertical"
+        android:weightSum="10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_weight="4"
+            android:id="@+id/detailFragMedia"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+        <FrameLayout
+            android:layout_weight="4.5"
+            android:id="@+id/detailFragInstruction"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+        <FrameLayout
+            android:layout_weight="1.2"
+            android:id="@+id/detailFragNav"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+    </LinearLayout>
 
 
 </LinearLayout>

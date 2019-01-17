@@ -19,6 +19,7 @@ public class IngredientRecyclerViewAdapter extends RecyclerView.Adapter<Ingredie
     private List<Ingredient> ingredientList;
 
     IngredientRecyclerViewAdapter(List<Ingredient> ingredientList) {
+        Log.d(TAG, "IngredientRecyclerViewAdapter: ");
         this.ingredientList = ingredientList;
     }
 
@@ -33,8 +34,8 @@ public class IngredientRecyclerViewAdapter extends RecyclerView.Adapter<Ingredie
     public void onBindViewHolder(@NonNull IngredientViewHolder holder, int position) {
         if (ingredientList != null && position < ingredientList.size()) {
             // TODO DISPLAY TEXT HERE
-
             Ingredient ingredient = ingredientList.get(position);
+            Log.d(TAG, "onBindViewHolder: " + ingredient.getIngredient());
             holder.ingredientTitle.setText(ingredient.getIngredient());
             holder.ingredientMeasure.setText(ingredient.getMeasure());
             holder.ingredientQty.setText(String.valueOf(ingredient.getQuantity()));

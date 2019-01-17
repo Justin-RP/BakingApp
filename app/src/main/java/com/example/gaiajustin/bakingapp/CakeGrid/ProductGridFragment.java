@@ -66,7 +66,7 @@ public class ProductGridFragment extends Fragment {
         // Set up viewModel
 
         cakeViewModel = ViewModelProviders.of(this).get(CakeViewModel.class);
-        cakeViewModel.insertCakeList(Cake.initProductEntryList());
+//        cakeViewModel.insertCakeList(Cake.initProductEntryList());
         cakeViewModel.getCakes().observe(this, new Observer<List<Cake>>() {
             @Override
             public void onChanged(@Nullable List<Cake> cakes) {

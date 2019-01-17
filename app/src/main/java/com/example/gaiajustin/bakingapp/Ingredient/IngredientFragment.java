@@ -41,6 +41,7 @@ public class IngredientFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment with the StepGrid theme
         View view = inflater.inflate(R.layout.ba_ingredient_fragment, container, false);
+        Log.d(TAG, "onCreateView: ");
 
 
         context = MyApplication.getAppContext();
@@ -76,6 +77,7 @@ public class IngredientFragment extends Fragment {
             public void onChanged(@Nullable List<Cake> cakes) {
                 int cake_position = getArguments().getInt(getResources().getString(R.string.cake_position_pressed),0);
                 Log.d(TAG, "onChanged: " + cake_position);
+                Log.d(TAG, "onChanged: " + cakes.get(cake_position).getIngredients().get(0).getIngredient());
                 ingredientList.clear();
                 ingredientList.addAll(cakes.get(cake_position).getIngredients());
                 ((DetailActivity) getActivity()).setActionBarTitle("Ingredient");

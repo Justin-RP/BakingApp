@@ -31,8 +31,11 @@ public class NavCardRecyclerViewAdapter extends RecyclerView.Adapter<NavCardView
             // TODO DISPLAY TEXT HERE
             Step step = stepList.get(position);
             holder.detailTitle.setText(step.getShortDesc());
-            int displayPosition = position + 1;
-            holder.detailStepNumber.setText("Step " + displayPosition);
+            if (position == 0) {
+                holder.detailStepNumber.setText("Introduction");
+            } else {
+                holder.detailStepNumber.setText("Step " + position);
+            }
         }
     }
 

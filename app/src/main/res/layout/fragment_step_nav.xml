@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Step.StepNavFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/stepNav_prev"
+        android:src="@drawable/left_arrow"
+        android:layout_width="100dp"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/stepNav_text"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        tools:text="1/7"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:src="@drawable/right_arrow"
+        android:layout_alignParentRight="true"
+        android:id="@+id/stepNav_next"
+        android:layout_width="100dp"
+        android:layout_height="match_parent" />
+</RelativeLayout>
