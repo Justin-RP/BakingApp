@@ -42,6 +42,7 @@ public class StepNavFragment extends Fragment {
         ivPrev = view.findViewById(R.id.stepNav_prev);
         ivNext = view.findViewById(R.id.stepNav_next);
 
+
         return view;
     }
 
@@ -49,10 +50,23 @@ public class StepNavFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         stepViewModel = ViewModelProviders.of(getActivity()).get(StepViewModel.class);
+        stepViewModel.getStepSize().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(@Nullable Integer stepSize) {
+                maxStep = stepSize - 1;
+                Log.d(TAG, "onChanged: stepSize currentStep " + currentStep);
+                Log.d(TAG, "onChanged: stepSize maxStep " + maxStep);
+
+                checkMaxStep();
+
+            }
+        });
         stepViewModel.getStep().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable Integer integer) {
                 currentStep = integer;
+
+
                 if (currentStep == 0) {
                     showPrevButton(false);
                     tvStepNav.setText("Introduction");
@@ -60,21 +74,12 @@ public class StepNavFragment extends Fragment {
                     showPrevButton(true);
                     tvStepNav.setText(String.valueOf(integer));
                 }
-                if (currentStep == maxStep) {
-                    showNextButton(false);
-                } else {
-                    showNextButton(true);
-                }
 
+                checkMaxStep();
             }
         });
-        stepViewModel.getStepSize().observe(getViewLifecycleOwner(), new Observer<Integer>() {
-            @Override
-            public void onChanged(@Nullable Integer stepSize) {
-                maxStep = stepSize - 1;
 
-            }
-        });
+
     }
 
     @Override
@@ -115,6 +120,18 @@ public class StepNavFragment extends Fragment {
             ivNext.setVisibility(View.VISIBLE);
         } else {
             ivNext.setVisibility(View.GONE);
+        }
+    }
+
+    private void checkMaxStep() {
+        if (currentStep == maxStep) {
+            Log.d(TAG, "onChanged: TESTING");
+            showNextButton(false);
+        } else {
+            Log.d(TAG, "onChanged: WHY");
+            Log.d(TAG, "onChanged: getStep currentStep " + currentStep);
+            Log.d(TAG, "onChanged: getStep maxStep " + maxStep);
+            showNextButton(true);
         }
     }
 }
