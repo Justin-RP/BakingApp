@@ -1,10 +1,12 @@
 package com.example.gaiajustin.bakingapp;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -16,8 +18,10 @@ import com.example.gaiajustin.bakingapp.Step.StepNavFragment;
 
 public class DetailActivity extends AppCompatActivity {
 
+    private static final String TAG = DetailActivity.class.getSimpleName();
     LinearLayout stepLinearLayout;
-    FrameLayout ingredientLayout;
+    FrameLayout ingredientLayout, frameInstruction, frameMedia, frameNav;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +30,14 @@ public class DetailActivity extends AppCompatActivity {
 
         stepLinearLayout = findViewById(R.id.detailStepLayout);
         ingredientLayout = findViewById(R.id.detailFragIngredient);
+        frameInstruction = findViewById(R.id.detailFrameInstruction);
+        frameMedia = findViewById(R.id.detailFrameMedia);
+        frameNav = findViewById(R.id.detailFrameNav);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+
 
         Intent intent = getIntent();
         if(intent.hasExtra(getResources().getString(R.string.step_position_pressed))) {
@@ -45,11 +54,23 @@ public class DetailActivity extends AppCompatActivity {
 
             stepFragment.setArguments(bundle);
 
-            fragmentTransactionFav.replace(R.id.detailFragInstruction, stepFragment);
-            fragmentTransactionFav.replace(R.id.detailFragMedia, mediaPlayerFragment);
-            fragmentTransactionFav.replace(R.id.detailFragNav, stepNavFragment);
+            fragmentTransactionFav.replace(frameInstruction.getId(), stepFragment);
+            fragmentTransactionFav.replace(frameMedia.getId(), mediaPlayerFragment);
+            fragmentTransactionFav.replace(frameNav.getId(), stepNavFragment);
             fragmentTransactionFav.commit();
             isIngredientLayoutShown(false);
+
+//            if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                // Show all
+//                Log.d(TAG, "onCreate: Orientation: Landscape");
+//                isFullScreen(true);
+//            } else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+//                // Remove all except nav
+//                Log.d(TAG, "onCreate: Orientation Portrait");
+//                isFullScreen(false);
+//            } else {
+//                Log.e(TAG, "onCreate: Orientation" + getResources().getConfiguration().orientation );
+//            }
 
         } else {
             Bundle bundle = new Bundle();
@@ -74,13 +95,23 @@ public class DetailActivity extends AppCompatActivity {
         return true;
     }
 
-    public void isIngredientLayoutShown(boolean isTrue) {
-        if (isTrue) {
+    public void isIngredientLayoutShown(boolean ingredientShown) {
+        if (ingredientShown) {
             ingredientLayout.setVisibility(View.VISIBLE);
             stepLinearLayout.setVisibility(View.GONE);
         } else {
             ingredientLayout.setVisibility(View.GONE);
             stepLinearLayout.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void isFullScreen(boolean fullScreenShown) {
+        if(fullScreenShown) {
+            frameNav.setVisibility(View.GONE);
+            frameInstruction.setVisibility(View.GONE);
+        } else {
+            frameNav.setVisibility(View.VISIBLE);
+            frameMedia.setVisibility(View.VISIBLE);
         }
     }
 }

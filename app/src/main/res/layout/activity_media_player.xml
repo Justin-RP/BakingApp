@@ -4,8 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/design_default_color_primary"
+    android:background="#000000"
     tools:context=".Step.MediaPlayerFragment">
+
+    <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+        app:default_artwork="@color/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/media_exo_player_view"/>
 
 
 </android.support.constraint.ConstraintLayout>

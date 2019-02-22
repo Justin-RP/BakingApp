@@ -8,6 +8,8 @@ import com.example.gaiajustin.bakingapp.CakeGrid.ProductGridFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransactionFav.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
         fragmentTransactionFav.replace(R.id.mFragMain, productGridFragment);
         fragmentTransactionFav.commit();
+
     }
 
 

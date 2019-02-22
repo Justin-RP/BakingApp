@@ -33,6 +33,8 @@ public class ProductGridFragment extends Fragment {
     private CakeViewModel cakeViewModel;
     private List<Cake> cakeList;
     private Context context;
+    boolean isTablet;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,15 +48,22 @@ public class ProductGridFragment extends Fragment {
 
         // Inflate the layout for this fragment with the ProductGrid theme
         View view = inflater.inflate(R.layout.ba_product_grid_fragment, container, false);
-
+        Log.d(TAG, "onCreateView: FRAGMENT CALLED");
 
         // Instantiate cakeList
         cakeList = new ArrayList<>();
+        isTablet = getResources().getBoolean(R.bool.isTablet);
+        recyclerView = view.findViewById(R.id.recycler_view);
 
         // Set up the RecyclerView
-        recyclerView = view.findViewById(R.id.recycler_view);
+        if (isTablet) {
+            recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false));
+        } else  {
+            recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1, GridLayoutManager.VERTICAL, false));
+        }
+
+
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1, GridLayoutManager.VERTICAL, false));
         final ProductCardRecyclerViewAdapter adapter = new ProductCardRecyclerViewAdapter(
                 cakeList);
         recyclerView.setAdapter(adapter);
@@ -78,12 +87,6 @@ public class ProductGridFragment extends Fragment {
             }
         });
 
-        return view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(context, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
@@ -91,6 +94,7 @@ public class ProductGridFragment extends Fragment {
                         Intent toNavIntent = new Intent(context, NavActivity.class);
 
                         toNavIntent.putExtra(getResources().getString(R.string.cake_position_pressed), position);
+                        toNavIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(toNavIntent);
                     }
 
@@ -99,6 +103,14 @@ public class ProductGridFragment extends Fragment {
                     }
                 })
         );
+
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
     }
 
 

@@ -8,10 +8,17 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+
+    <TextView
+        android:text="HELLO I LOVE CHESS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <FrameLayout
         android:id="@+id/mFragMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
     />
+
+
 
 </LinearLayout>

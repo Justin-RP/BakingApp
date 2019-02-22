@@ -80,12 +80,6 @@ public class NavGridFragment extends Fragment {
             }
         });
 
-        return view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         recyclerView.addOnItemTouchListener(
                 new NavItemClickListener(context, recyclerView ,new NavItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
@@ -94,6 +88,7 @@ public class NavGridFragment extends Fragment {
                         Intent toDetailIntent = new Intent(context, DetailActivity.class);
                         toDetailIntent.putExtra(getResources().getString(R.string.step_position_pressed), position);
                         toDetailIntent.putExtra(getResources().getString(R.string.cake_position_pressed), cakeId);
+                        toDetailIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(toDetailIntent);
                     }
 
@@ -102,6 +97,14 @@ public class NavGridFragment extends Fragment {
                     }
                 })
         );
+
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
     }
 
 

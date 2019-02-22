@@ -2,12 +2,11 @@ package com.example.gaiajustin.bakingapp.CakeGrid;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.gaiajustin.bakingapp.ImageRequester;
+import com.example.gaiajustin.bakingapp.Utils.ImageRequester;
 import com.example.gaiajustin.bakingapp.R;
 import com.example.gaiajustin.bakingapp.database.Cake;
 

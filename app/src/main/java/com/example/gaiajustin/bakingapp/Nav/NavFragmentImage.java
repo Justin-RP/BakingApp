@@ -11,12 +11,11 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.android.volley.toolbox.NetworkImageView;
 import com.example.gaiajustin.bakingapp.DetailActivity;
 import com.example.gaiajustin.bakingapp.NavActivity;
-import com.example.gaiajustin.bakingapp.ImageRequester;
+import com.example.gaiajustin.bakingapp.Utils.ImageRequester;
 import com.example.gaiajustin.bakingapp.R;
 import com.example.gaiajustin.bakingapp.database.Cake;
 import com.example.gaiajustin.bakingapp.database.CakeViewModel;
@@ -34,7 +33,6 @@ public class NavFragmentImage extends Fragment {
     // Views
     private NetworkImageView imageView;
     private CardView cardViewIngredient;
-    private ImageView widgetImageView;
 
     @Nullable
     @Override
@@ -47,7 +45,6 @@ public class NavFragmentImage extends Fragment {
 
         // Set up Views
         imageView = view.findViewById(R.id.nav_image);
-        widgetImageView = view.findViewById(R.id.nav_widgetStar);
 
         cakeViewModel = ViewModelProviders.of(this).get(CakeViewModel.class);
         cakeList = new ArrayList<>();
@@ -72,13 +69,6 @@ public class NavFragmentImage extends Fragment {
             }
         });
 
-        widgetImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-            }
-        });
     }
 
     @Override
@@ -98,15 +88,6 @@ public class NavFragmentImage extends Fragment {
             }
         });
     }
-
-    private void setImageStar(boolean isFav) {
-        if (isFav) {
-            widgetImageView.setImageResource(R.drawable.star);
-        } else {
-            widgetImageView.setImageResource(R.drawable.nostar);
-        }
-    }
-
 
 
 }

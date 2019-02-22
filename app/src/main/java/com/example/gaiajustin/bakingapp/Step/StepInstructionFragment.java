@@ -28,6 +28,7 @@ public class StepInstructionFragment extends Fragment {
     private CakeViewModel mViewModel;
     private List<Cake> cakeList;
     private TextView tvDescription;
+    private Cake currentCake;
 
     private int stepId;
     private int cakeId;
@@ -46,6 +47,7 @@ public class StepInstructionFragment extends Fragment {
 
         // Initialize
         mViewModel = ViewModelProviders.of(this).get(CakeViewModel.class);
+        stepViewModel = ViewModelProviders.of(getActivity()).get(StepViewModel.class);
         cakeList = new ArrayList<>();
 
         tvDescription = view.findViewById(R.id.instruction_description);
@@ -59,31 +61,35 @@ public class StepInstructionFragment extends Fragment {
         Intent intent = getActivity().getIntent();
         cakeId = intent.getIntExtra(getResources().getString(R.string.cake_position_pressed), 0);
         stepId = intent.getIntExtra(getResources().getString(R.string.step_position_pressed), 0);
+        Log.d(TAG, "onActivityCreated: CakeId" + cakeId);
         mViewModel.getCakes().observe(this, new Observer<List<Cake>>() {
             @Override
             public void onChanged(@Nullable List<Cake> cakes) {
                 Log.d(TAG, "onChanged: " + cakeId + " : " + stepId);
+                Log.d(TAG, "onChanged: getCakes() called");
 
-                Cake cake = cakes.get(cakeId);
-                Step step = cake.getSteps().get(stepId);
+                currentCake = cakes.get(cakeId);
+                Step step = currentCake.getSteps().get(stepId);
                 cakeList.clear();
                 cakeList.addAll(cakes);
                 stepViewModel.setCurrentStep(stepId);
-                stepViewModel.setStepSize(cake.getSteps().size());
+                stepViewModel.setStepSize(currentCake.getSteps().size());
+                stepViewModel.setCakeId(cakeId);
 //                Log.d(TAG, "onChanged: " + step.getDesc());
 
 //                ((NavActivity) getActivity()).setActionBarTitle(cakeList.get(cakeId).getName());
                 tvDescription.setText(step.getDesc());
             }
         });
-        stepViewModel = ViewModelProviders.of(getActivity()).get(StepViewModel.class);
+
         stepViewModel.getStep().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable Integer integer) {
+                Log.d(TAG, "onChanged: getStep()");
 
-                Cake cake = cakeList.get(cakeId);
+//                currentCake = cakeList.get(cakeId);
 
-                tvDescription.setText(cake.getSteps().get(integer).getDesc());
+                tvDescription.setText(currentCake.getSteps().get(integer).getDesc());
             }
         });
     }

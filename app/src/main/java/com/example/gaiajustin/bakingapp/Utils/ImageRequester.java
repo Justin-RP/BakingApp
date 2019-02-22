@@ -1,7 +1,8 @@
-package com.example.gaiajustin.bakingapp;
+package com.example.gaiajustin.bakingapp.Utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.DisplayMetrics;
 import android.util.LruCache;
 
@@ -9,6 +10,12 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
+import com.example.gaiajustin.bakingapp.MyApplication;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 /**
  * Class that handles image requests using Volley.
@@ -74,4 +81,5 @@ public class ImageRequester {
         final int screenBytes = displayMetrics.widthPixels * displayMetrics.heightPixels * 4;
         return screenBytes * 3;
     }
+
 }

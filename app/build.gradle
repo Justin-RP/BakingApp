@@ -34,9 +34,11 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.alespero:expandable-cardview:0.6'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     def lifecycle_version = "1.1.1"
     def room_version = "1.0.0"
+    def exoplayer_version = "r2.2.0"
 
     // Room (use 1.1.0-beta3 for latest beta)
     implementation "android.arch.persistence.room:runtime:$room_version"
@@ -45,4 +47,13 @@ dependencies {
     // Live Data & View Model
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
     annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version"
+
+    // Exo Player
+    implementation "com.google.android.exoplayer:exoplayer:$exoplayer_version"
+//    implementation "com.google.android.exoplayer-core:$exoplayer_version"
+//    implementation "com.google.android.exoplayer-dash:$exoplayer_version"
+//    implementation "com.google.android.exoplayer-hls:$exoplayer_version"
+//    implementation "com.google.android.exoplayer-smoothstreaming:$exoplayer_version"
+//    implementation "com.google.android.exoplayer-ui:$exoplayer_version"
+
 }

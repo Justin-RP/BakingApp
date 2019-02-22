@@ -100,10 +100,10 @@ public class Cake {
 
 
         Step cake1step1 = new Step(0,"Recipe Introduction","Recipe Introduction",
-                "https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58ffd974_-intro-creampie/-intro-creampie.mp4",
-                "");
+                "http://blueappsoftware.in/layout_design_android_blog.mp4",
+                "http://image.tmdb.org/t/p/w185/i2dF9UxOeb77CAJrOflj0RpqJRF.jpg");
         Step cake1step2 = new Step(1,"Starting prep","1. Preheat the oven to 350\\u00b0F. Butter a 9\\\" deep dish pie pan.",
-                "http:/", "http:/");
+                "", "");
         Step cake1step3 = new Step(2,"Prep the cookie crust.",
                 "2. Whisk the graham cracker crumbs, 50 grams (1/4 cup) of sugar, and 1/2 teaspoon of salt together in a medium bowl. " +
                         "Pour the melted butter and 1 teaspoon of vanilla into the dry ingredients and stir together until evenly mixed.",
@@ -130,10 +130,10 @@ public class Cake {
 
 
         Step cake2step1 = new Step(0,"Recipe Introduction","Recipe Introduction",
-                "https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58ffdc33_-intro-brownies/-intro-brownies.mp4",
+                "http://blueappsoftware.in/layout_design_android_blog.mp4",
                 "");
         Step cake2step2 = new Step(1,"Starting prep","1. Preheat the oven to 350ï¿½F. Butter the bottom and sides of a 9\\\"x13\\\" pan.",
-                "http:/", "http:/");
+                "", "");
         Step cake2step3 = new Step(2,"Melt butter and bittersweet chocolate.",
                 "2. Melt the butter and bittersweet chocolate together in a microwave or a double boiler. If microwaving, heat for 30 seconds at a time, removing bowl and stirring ingredients in between.",
                 "https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58ffd9a6_2-mix-sugar-crackers-creampie/2-mix-sugar-crackers-creampie.mp4",
